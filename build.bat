@@ -1,0 +1,1 @@
+g++ -Wall -std=c++11 -I.\include .\lib\sqlite3.dll test.cpp -o test.exe
