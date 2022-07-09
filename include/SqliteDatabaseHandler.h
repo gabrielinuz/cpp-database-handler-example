@@ -101,7 +101,6 @@ class SqliteDatabaseHandler : public DatabaseHandler
                 }
                 catch(const std::exception& e)
                 {
-                    //std::cerr << "Este es mi wrapper de error: " << e.what() << '\n';
                     columnValue = "";
                 }
                 
