@@ -13,98 +13,80 @@
 
 class IniReader
 {
-    public:
-        IniReader();
-        virtual ~IniReader();
-        bool open( std::string fileName);
-        IniReader* selectSection( std::string section );
-        std::string getValue( std::string key );
-        void close();
-
-
     private:
-        std::ifstream _fileInput;
-        std::string  _dataSection ;
-        std::string _BufferData ;
+        std::ifstream fileInput;
+        std::string  dataSection ;
+        std::string BufferData ;
 
-        void ReadFile();
+        void readFile()
+        {
+            while( !fileInput.eof())
+            {
+                std::string buffer;
+                fileInput >> buffer;
+                BufferData += " " + std::string(buffer);
+            }
+        }
+
+    public:
+        IniReader(){/*ctor*/}
+
+        virtual ~IniReader(){/*dtor*/}
+
+        bool open( std::string fileName)
+        {
+            fileInput.open(fileName.c_str());
+            return  !fileInput ? false : true;
+        }
+
+        IniReader* selectSection( std::string section )
+        {
+            readFile();
+            std::string buffer;
+            size_t posInitialBuffer = BufferData.find("["+section+"]");
+
+            if (BufferData.find("["+section+"]") == (std::string::npos))
+            {
+                return this;
+            }
+            else
+            {
+                buffer = BufferData.substr(posInitialBuffer);
+                size_t posInitial = buffer.find("["+section+"]");
+                size_t posEnd = buffer.find_first_of("[",posInitial+1);
+
+                size_t sizeOfString = posEnd-posInitial;
+                dataSection = buffer.substr(posInitial,sizeOfString );
+
+                return this;
+            }
+        }
+
+        std::string getValue( std::string key )
+        {
+            unsigned int pos ;
+            pos  = dataSection.find(key);
+
+            if ((pos==std::string::npos) || (dataSection == ""))
+            {
+                return "";
+            }
+            else
+            {
+                int posValue = (dataSection.find_first_of("=",pos) + 2);
+                int posEndValue = dataSection.find_first_of(" ",posValue);
+                size_t sizeOfString = posEndValue-posValue;
+
+                std::string value = dataSection.substr(posValue,sizeOfString);
+
+                return value ;
+            }
+        }
+        
+        void close()
+        {
+            fileInput.close();
+        }
 };
-
-IniReader::IniReader()
-{
-    //ctor
-}
-
-bool IniReader::open( std::string fileName )
-{
-   _fileInput.open(fileName.c_str());
-    return  !_fileInput ? false : true;
-}
-
-IniReader* IniReader::selectSection( std::string section )
-{
-
-    ReadFile();
-    std::string _buffer;
-    size_t posInitialBuffer = _BufferData.find("["+section+"]");
-
-    if (_BufferData.find("["+section+"]") == (std::string::npos))
-    {
-        return this;
-    }
-    else
-    {
-        _buffer = _BufferData.substr(posInitialBuffer);
-        size_t posInitial = _buffer.find("["+section+"]");
-        size_t posEnd = _buffer.find_first_of("[",posInitial+1);
-
-        size_t sizeOfString = posEnd-posInitial;
-        _dataSection = _buffer.substr(posInitial,sizeOfString );
-
-        return this;
-    }
-}
-
-std::string IniReader::getValue(std::string key)
-{
-    unsigned int pos ;
-    pos  = _dataSection.find(key);
-
-    if ((pos==std::string::npos) || (_dataSection == ""))
-    {
-        return "";
-    }
-    else
-    {
-        int posValue = (_dataSection.find_first_of("=",pos) + 2);
-        int posEndValue = _dataSection.find_first_of(" ",posValue);
-        size_t sizeOfString = posEndValue-posValue;
-
-        std::string value = _dataSection.substr(posValue,sizeOfString);
-
-        return value ;
-    }
-}
-
-void IniReader::close()
-{
-    _fileInput.close();
-}
-
-void IniReader::ReadFile()
-{
-    while( !_fileInput.eof())
-    {
-        std::string _buffer;
-
-       _fileInput >> _buffer;
-       _BufferData += " " + std::string(_buffer);
-    }
-}
-
-IniReader::~IniReader()
-{
-    //dtor
-}
 
 #endif // INIREADER_H
