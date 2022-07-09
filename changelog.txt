@@ -1,2 +1,4 @@
 Se utiliza el parámetro -I en la línea de compilación para incluir desde un directorio específico "include" las cabeceras.
 Se agrega directorio lib para las bibliotecas dinámicas.
+Se agrega manejo de excepciones a SqliteDatabaseHandler para consultas con resultado nulo.
+Se agrega comportamiento a SqliteDatabaseHandler para poder ser compuesto un archivo de configuración. 
