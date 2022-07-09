@@ -1,6 +1,5 @@
 /**
-* Copyright (c) 2020 Compset Development Group. All rights reserved.
-* Contact: compset@protonmail.com
+* Copyright (c) 2020 Gabriel Nicolás González Ferreira. All rights reserved.
 * Released under the MIT license
 * https://opensource.org/licenses/MIT
 **/

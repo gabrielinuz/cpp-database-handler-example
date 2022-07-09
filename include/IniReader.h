@@ -1,9 +1,9 @@
 /**
-* Copyright (c) 2016 Gabriel Ferreira <gabrielinuz@gmail.com>. All rights reserved. 
-* This file is part of API-CPP-SET.
-* Released under the GPL3 license
-* https://opensource.org/licenses/GPL-3.0
+* Copyright (c) 2020 Gabriel Nicolás González Ferreira. All rights reserved.
+* Released under the MIT license
+* https://opensource.org/licenses/MIT
 **/
+
 #ifndef INIREADER_H
 #define INIREADER_H
 

@@ -1,3 +1,9 @@
+/**
+* Copyright (c) 2020 Gabriel Nicolás González Ferreira. All rights reserved.
+* Released under the MIT license
+* https://opensource.org/licenses/MIT
+**/
+
 #include <iostream>
 #include <string>
 #include <vector>
