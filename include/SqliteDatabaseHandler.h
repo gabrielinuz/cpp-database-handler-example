@@ -36,9 +36,8 @@ class SqliteDatabaseHandler : public DatabaseHandler
         void openDb(std::string dbPath)
         {
             errorStatus = false;
-            std::string path = dbPath;
 
-            int iReturn = sqlite3_open(path.c_str(), &pDB);
+            int iReturn = sqlite3_open(dbPath.c_str(), &pDB);
             if (iReturn != SQLITE_OK) 
             {  
                 errorStatus = true;
