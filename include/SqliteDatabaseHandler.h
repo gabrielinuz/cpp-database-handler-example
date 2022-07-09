@@ -15,10 +15,8 @@
 #include <DatabaseHandler.h>
 #include <IniReader.h>
 
-
-typedef std::unordered_map< std::string, std::string > Row; 
-typedef std::vector< Row > Table; 
-
+/*Row and Table are synonyms for C++ STL structures.
+defined in the pure virtual class DatabaseHandler*/
 class SqliteDatabaseHandler : public DatabaseHandler
 {
     private:
