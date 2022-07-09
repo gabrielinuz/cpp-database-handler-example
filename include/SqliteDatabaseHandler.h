@@ -14,6 +14,8 @@
 #include <unordered_map>
 #include <sqlite3.h>
 #include <DatabaseHandler.h>
+#include <IniReader.h>
+
 
 typedef std::unordered_map< std::string, std::string > Row; 
 typedef std::vector< Row > Table; 
@@ -29,9 +31,9 @@ class SqliteDatabaseHandler : public DatabaseHandler
         std::string columnName;
         std::string columnValue;
         int columnCount;
+        std::shared_ptr<IniReader> iniReader;
 
-    public:
-        SqliteDatabaseHandler(std::string dbPath)
+        void openDb(std::string dbPath)
         {
             errorStatus = false;
             std::string path = dbPath;
@@ -45,11 +47,29 @@ class SqliteDatabaseHandler : public DatabaseHandler
             }
             stmt = nullptr;
         }
+
+    public:
+        SqliteDatabaseHandler()
+        {
+            this->iniReader = std::make_shared<IniReader>();
+        }
         
+        SqliteDatabaseHandler(std::string dbPath)
+        {
+            this->openDb(dbPath);
+        }
+
         ~SqliteDatabaseHandler()
         {
             sqlite3_finalize(stmt);
             sqlite3_close(pDB);
+        }
+
+        void setConfFile(std::string confFilePath)
+        {
+            iniReader->open("configuration.ini");
+            std::string dbPath = iniReader->selectSection("SQLITE")->getValue("path");
+            this->openDb(dbPath);         
         }
 
         void prepareQuery( std::string query )

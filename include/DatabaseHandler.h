@@ -19,7 +19,7 @@ typedef std::vector< Row > Table;
 class DatabaseHandler
 {
     public:
-        //virtual void setConfFile(std::string confFilePath) = 0;
+        virtual void setConfFile(std::string confFilePath) = 0;
         virtual void prepareQuery( std::string query ) = 0;
         virtual void addParameter( int key, std::string value ) = 0;
         virtual void execute() = 0;
