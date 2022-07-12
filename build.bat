@@ -1,2 +1,1 @@
-g++ -Wall -std=c++11 -I.\include .\lib\sqlite3.dll use_example.cpp.cpp -o .\bin\use_example.cpp.exe
-g++ -Wall -std=c++11 -I.\include .\lib\sqlite3.dll use_example_refact.cpp.cpp -o .\bin\use_example_refact.cpp.exe
+g++ -Wall -std=c++11 -I.\include .\lib\sqlite3.dll main.cpp -o .\bin\dbh_example.exe
