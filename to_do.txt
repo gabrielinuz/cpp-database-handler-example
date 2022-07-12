@@ -5,3 +5,5 @@ PostgreSQL
 Directorio para binarios para que no queden en el raíz.
 
 Pruebas con Catch.
+
+Hacer un script para borrar lo compilado
