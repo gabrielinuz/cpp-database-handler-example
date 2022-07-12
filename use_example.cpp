@@ -16,6 +16,7 @@
 
 typedef std::unordered_map< std::string, std::string > Row;
 typedef std::vector< Row > Table;
+
 int main()
 {
     //INIREADER:

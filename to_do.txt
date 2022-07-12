@@ -1,0 +1,7 @@
+Vendors separados
+
+PostgreSQL
+
+Directorio para binarios para que no queden en el raíz.
+
+Pruebas con Catch.
