@@ -37,7 +37,7 @@ class PosgreSQLDatabaseHandler : public DatabaseHandler
 
         int referenceCounter ;
         bool implemented ;
-        
+
     public:
         PosgreSQLDatabaseHandler() ;
         virtual ~PosgreSQLDatabaseHandler() ;
@@ -47,11 +47,6 @@ class PosgreSQLDatabaseHandler : public DatabaseHandler
         virtual void execute() ;
         virtual Row fetch() ;
         virtual Table fetchAll() ;
-
-        //ComponentInterface:
-        bool implements(std::string interfaceName);
-        void* getInstance() ;
-        void release() ;
 
     private:
         const char* host ;
@@ -168,32 +163,4 @@ Table PosgreSQLDatabaseHandler::fetchAll() {
     Table result ;
     return result ;
 }
-
-//ComponentInterface:
-bool PosgreSQLDatabaseHandler::implements(std::string interfaceName)
-{
-    return (interfaceName == "ComponentInterface" || interfaceName == "DatabaseHandlerInterface") ?
-        implemented = true
-            : implemented = false;
-}
-
-void* PosgreSQLDatabaseHandler::getInstance()
-{
-    if(implemented) {  referenceCounter++;  return this; }
-    return NULL;
-}
-
-void PosgreSQLDatabaseHandler::release()
-{
-    referenceCounter--;
-    if(referenceCounter <= 0) delete this;
-}
-
-extern "C" ComponentInterface* create();
-
-ComponentInterface* create()
-{
-    return (ComponentInterface*) new PosgreSQLDatabaseHandler;
-}
-
-#endif // SQLITE_DATABASE_HANDLER_H
+#endif // POSTGRE_DATABASE_HANDLER_H
