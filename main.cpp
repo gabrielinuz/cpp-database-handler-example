@@ -14,23 +14,12 @@
 #include <SqliteDatabaseHandler.h>
 #include <IniReader.h>
 
+using namespace std;
+
 int main()
 {
-    /*Another way:*/
-    // //INIREADER:
-    // /***ReadMe => sin puntero inteligente se hace así:
-    //     IniReader* iniReader = new IniReader();
-    //  ***/
-    // std::shared_ptr<IniReader> iniReader( new IniReader() );
-    
-    // iniReader->open("configuration.ini");
-    // std::string dbPath = iniReader->selectSection("SQLITE")->getValue("path");
-
-    // //Database Handler:
-    // std::shared_ptr<DatabaseHandler> dbh(new SqliteDatabaseHandler(dbPath));
-
     //Database Handler:
-    std::shared_ptr<DatabaseHandler> dbh(new SqliteDatabaseHandler());
+    auto dbh = make_unique<SqliteDatabaseHandler>();
     dbh->setConfFile("configuration.ini");
     dbh->prepareQuery("CREATE TABLE IF NOT EXISTS Users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)");
     dbh->execute();
