@@ -1,9 +1,9 @@
 Vendors separados
 
-PostgreSQL
+Armar otra implementación en PostgreSQL
 
 Directorio para binarios para que no queden en el raíz.
 
-Pruebas con Catch.
+Pruebas Unitarias.
 
 Hacer un script para borrar lo compilado
