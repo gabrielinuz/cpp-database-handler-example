@@ -2,6 +2,7 @@ EXPORTS
 sqlite3_aggregate_context
 sqlite3_aggregate_count
 sqlite3_auto_extension
+sqlite3_autovacuum_pages
 sqlite3_backup_finish
 sqlite3_backup_init
 sqlite3_backup_pagecount
@@ -33,6 +34,7 @@ sqlite3_busy_handler
 sqlite3_busy_timeout
 sqlite3_cancel_auto_extension
 sqlite3_changes
+sqlite3_changes64
 sqlite3_clear_bindings
 sqlite3_close
 sqlite3_close_v2
@@ -84,6 +86,7 @@ sqlite3_db_config
 sqlite3_db_filename
 sqlite3_db_handle
 sqlite3_db_mutex
+sqlite3_db_name
 sqlite3_db_readonly
 sqlite3_db_release_memory
 sqlite3_db_status
@@ -95,6 +98,7 @@ sqlite3_enable_shared_cache
 sqlite3_errcode
 sqlite3_errmsg
 sqlite3_errmsg16
+sqlite3_error_offset
 sqlite3_errstr
 sqlite3_exec
 sqlite3_expanded_sql
@@ -111,11 +115,13 @@ sqlite3_free_filename
 sqlite3_free_table
 sqlite3_get_autocommit
 sqlite3_get_auxdata
+sqlite3_get_clientdata
 sqlite3_get_table
 sqlite3_global_recover
 sqlite3_hard_heap_limit64
 sqlite3_initialize
 sqlite3_interrupt
+sqlite3_is_interrupted
 sqlite3_keyword_check
 sqlite3_keyword_count
 sqlite3_keyword_name
@@ -191,6 +197,7 @@ sqlite3_rtree_query_callback
 sqlite3_serialize
 sqlite3_set_authorizer
 sqlite3_set_auxdata
+sqlite3_set_clientdata
 sqlite3_set_last_insert_rowid
 sqlite3_shutdown
 sqlite3_sleep
@@ -203,6 +210,7 @@ sqlite3_status
 sqlite3_status64
 sqlite3_step
 sqlite3_stmt_busy
+sqlite3_stmt_explain
 sqlite3_stmt_isexplain
 sqlite3_stmt_readonly
 sqlite3_stmt_status
@@ -228,6 +236,7 @@ sqlite3_test_control
 sqlite3_thread_cleanup
 sqlite3_threadsafe
 sqlite3_total_changes
+sqlite3_total_changes64
 sqlite3_trace
 sqlite3_trace_v2
 sqlite3_transfer_bindings
@@ -243,6 +252,7 @@ sqlite3_value_bytes
 sqlite3_value_bytes16
 sqlite3_value_double
 sqlite3_value_dup
+sqlite3_value_encoding
 sqlite3_value_free
 sqlite3_value_frombind
 sqlite3_value_int
@@ -264,8 +274,13 @@ sqlite3_vmprintf
 sqlite3_vsnprintf
 sqlite3_vtab_collation
 sqlite3_vtab_config
+sqlite3_vtab_distinct
+sqlite3_vtab_in
+sqlite3_vtab_in_first
+sqlite3_vtab_in_next
 sqlite3_vtab_nochange
 sqlite3_vtab_on_conflict
+sqlite3_vtab_rhs_value
 sqlite3_wal_autocheckpoint
 sqlite3_wal_checkpoint
 sqlite3_wal_checkpoint_v2
@@ -283,11 +298,13 @@ sqlite3_win32_utf8_to_mbcs_v2
 sqlite3_win32_utf8_to_unicode
 sqlite3_win32_write_debug
 sqlite3changegroup_add
+sqlite3changegroup_add_change
 sqlite3changegroup_add_strm
 sqlite3changegroup_delete
 sqlite3changegroup_new
 sqlite3changegroup_output
 sqlite3changegroup_output_strm
+sqlite3changegroup_schema
 sqlite3changeset_apply
 sqlite3changeset_apply_strm
 sqlite3changeset_apply_v2
@@ -308,6 +325,20 @@ sqlite3changeset_start
 sqlite3changeset_start_strm
 sqlite3changeset_start_v2
 sqlite3changeset_start_v2_strm
+sqlite3rbu_bp_progress
+sqlite3rbu_close
+sqlite3rbu_create_vfs
+sqlite3rbu_db
+sqlite3rbu_destroy_vfs
+sqlite3rbu_open
+sqlite3rbu_progress
+sqlite3rbu_rename_handler
+sqlite3rbu_savestate
+sqlite3rbu_state
+sqlite3rbu_step
+sqlite3rbu_temp_size
+sqlite3rbu_temp_size_limit
+sqlite3rbu_vacuum
 sqlite3rebaser_configure
 sqlite3rebaser_create
 sqlite3rebaser_delete
